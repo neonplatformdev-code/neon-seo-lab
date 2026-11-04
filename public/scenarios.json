@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "lab_version": "1.0",
+  "approved_origin": "https://lab.neonplatform.online",
+  "purpose": "Fixture descriptions, not results or sole scoring authority.",
+  "evaluation": "Use a reviewed local Git revision, independent expectations and actual HTTP response bytes. Report generation alone is not a pass.",
+  "scenarios": [
+    {
+      "id": "perfect",
+      "path": "/perfect/",
+      "fixture_status": "ready_for_testing",
+      "test_status": "not_run",
+      "intent": "Title, description, H1 и canonical присутствуют. Контрольная точка для сравнения локальных SEO-признаков.",
+      "expected_html": {
+        "title": "NEON SEO Lab — Контрольная страница",
+        "description": "Контрольная HTML-страница NEON SEO Lab для проверки доказательного технического SEO-отчёта.",
+        "h1": "Проверяем решения.Сохраняем доказательства.",
+        "canonical": "https://lab.neonplatform.online/perfect/",
+        "meta_robots": [],
+        "complete": true
+      },
+      "expected_report": {
+        "outcome": "draft",
+        "failure_code": null,
+        "finding_classes": [],
+        "review_status": "not_independently_verified",
+        "not_claimed": [
+          "actual_google_indexation",
+          "robots_txt",
+          "sitemap",
+          "javascript_rendering",
+          "h1_analysis"
+        ]
+      },
+      "comparison_notes": "Identical body; self-canonical per route. Broken HTML adds an unfinished trailing comment."
+    },
+    {
+      "id": "missing-title",
+      "path": "/missing-title/",
+      "fixture_status": "ready_for_testing",
+      "test_status": "not_run",
+      "intent": "Тег title намеренно удалён. Ожидается title_not_observed с доказательством отсутствия.",
+      "expected_html": {
+        "title": null,
+        "description": "Контрольная HTML-страница NEON SEO Lab для проверки доказательного технического SEO-отчёта.",
+        "h1": "Проверяем решения.Сохраняем доказательства.",
+        "canonical": "https://lab.neonplatform.online/missing-title/",
+        "meta_robots": [],
+        "complete": true
+      },
+      "expected_report": {
+        "outcome": "draft",
+        "failure_code": null,
+        "finding_classes": [
+          "title_not_observed"
+        ],
+        "review_status": "not_independently_verified",
+        "not_claimed": [
+          "actual_google_indexation",
+          "robots_txt",
+          "sitemap",
+          "javascript_rendering",
+          "h1_analysis"
+        ]
+      },
+      "comparison_notes": "Identical body; self-canonical per route. Broken HTML adds an unfinished trailing comment."
+    },
+    {
+      "id": "missing-description",
+      "path": "/missing-description/",
+      "fixture_status": "ready_for_testing",
+      "test_status": "not_run",
+      "intent": "Meta description намеренно отсутствует. Ожидается description_not_observed.",
+      "expected_html": {
+        "title": "NEON SEO Lab — Контрольная страница",
+        "description": null,
+        "h1": "Проверяем решения.Сохраняем доказательства.",
+        "canonical": "https://lab.neonplatform.online/missing-description/",
+        "meta_robots": [],
+        "complete": true
+      },
+      "expected_report": {
+        "outcome": "draft",
+        "failure_code": null,
+        "finding_classes": [
+          "description_not_observed"
+        ],
+        "review_status": "not_independently_verified",
+        "not_claimed": [
+          "actual_google_indexation",
+          "robots_txt",
+          "sitemap",
+          "javascript_rendering",
+          "h1_analysis"
+        ]
+      },
+      "comparison_notes": "Identical body; self-canonical per route. Broken HTML adds an unfinished trailing comment."
+    },
+    {
+      "id": "noindex",
+      "path": "/noindex/",
+      "fixture_status": "ready_for_testing",
+      "test_status": "not_run",
+      "intent": "Meta robots содержит noindex. Проверяем фиксацию директивы, а не присутствие страницы в Google.",
+      "expected_html": {
+        "title": "NEON SEO Lab — Контрольная страница",
+        "description": "Контрольная HTML-страница NEON SEO Lab для проверки доказательного технического SEO-отчёта.",
+        "h1": "Проверяем решения.Сохраняем доказательства.",
+        "canonical": "https://lab.neonplatform.online/noindex/",
+        "meta_robots": [
+          "noindex"
+        ],
+        "complete": true
+      },
+      "expected_report": {
+        "outcome": "draft",
+        "failure_code": null,
+        "finding_classes": [
+          "indexability_blocked"
+        ],
+        "review_status": "not_independently_verified",
+        "not_claimed": [
+          "actual_google_indexation",
+          "robots_txt",
+          "sitemap",
+          "javascript_rendering",
+          "h1_analysis"
+        ]
+      },
+      "comparison_notes": "Identical body; self-canonical per route. Broken HTML adds an unfinished trailing comment."
+    },
+    {
+      "id": "broken-html",
+      "path": "/broken-html/",
+      "fixture_status": "ready_for_testing",
+      "test_status": "not_run",
+      "intent": "Незакрытый комментарий в конце документа. Ожидается unsupported_html без успешного SEO-отчёта.",
+      "expected_html": {
+        "title": "NEON SEO Lab — Контрольная страница",
+        "description": "Контрольная HTML-страница NEON SEO Lab для проверки доказательного технического SEO-отчёта.",
+        "h1": "Проверяем решения.Сохраняем доказательства.",
+        "canonical": "https://lab.neonplatform.online/broken-html/",
+        "meta_robots": [],
+        "complete": false
+      },
+      "expected_report": {
+        "outcome": "controlled_failure",
+        "failure_code": "unsupported_html",
+        "finding_classes": [],
+        "review_status": null,
+        "not_claimed": [
+          "actual_google_indexation",
+          "robots_txt",
+          "sitemap",
+          "javascript_rendering",
+          "h1_analysis"
+        ]
+      },
+      "comparison_notes": "Identical body; self-canonical per route. Broken HTML adds an unfinished trailing comment."
+    }
+  ]
+}
